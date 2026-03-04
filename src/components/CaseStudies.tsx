@@ -1,61 +1,42 @@
-import React from 'react';
-import { useScrollReveal } from '../hooks/useScrollReveal';
-
-export const CaseStudies: React.FC = () => {
-  const titleRef = useScrollReveal();
-  const case1Ref = useScrollReveal();
-  const case2Ref = useScrollReveal();
-  const case3Ref = useScrollReveal();
-
-  const cases = [
-    {
-      num: '77%',
-      metric: 'aumento na taxa de conversão',
-      desc: 'O maior grupo de fisioterapia do país atinge metas de capacidade com estratégia de PPC baseada em dados.',
-      brand: 'ATI Physical Therapy',
-      ref: case1Ref,
-      delay: ''
-    },
-    {
-      num: '54%',
-      metric: 'aumento total de leads ano a ano',
-      desc: 'Estratégia de mídia paga escalável para rede veterinária com mais de 400 localizações.',
-      brand: 'SVP Veterinary',
-      ref: case2Ref,
-      delay: 'reveal-delay-1'
-    },
-    {
-      num: '116%',
-      metric: 'aumento no volume de leads',
-      desc: 'DSO em crescimento aumenta volume de leads com nova estratégia holística de marketing de performance.',
-      brand: 'Peak Dental',
-      ref: case3Ref,
-      delay: 'reveal-delay-2'
-    }
-  ];
-
+﻿export function CaseStudies() {
   return (
-    <section id="casos" className="bg-gray-900 px-5% py-20 md:py-28">
-      <div className="max-w-6xl mx-auto">
-        <div className="text-center mb-16">
-          <div className="section-pretitle text-center">Estudos de Caso</div>
-          <h2 ref={titleRef} className="reveal section-title text-center">
-            Histórias de Crescimento em Saúde para <span>Inveja</span>
-          </h2>
+    <section className="res" id="resultados">
+      <div className="mw">
+        <div className="sec-head">
+          <p className="tag">Cases reais</p>
+          <h2 className="sec-h serif">Resultados que não deixam<br/>espaço para <em>dúvida</em></h2>
+          <p className="sec-desc">Especialistas em Goiânia que pararam de depender de indicação.</p>
         </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-0.5 bg-gray-700">
-          {cases.map((caseItem, index) => (
-            <div key={index} ref={caseItem.ref} className={`reveal ${caseItem.delay} bg-gray-mid p-12 relative hover:translate-y-[-6px] transition-transform duration-300 cursor-pointer`}>
-              <div className="absolute top-0 left-0 right-0 h-1 bg-yellow"></div>
-              <div className="font-bebas text-6xl text-yellow leading-none mb-1">{caseItem.num}</div>
-              <div className="text-xs uppercase text-white/50 tracking-wider mb-6">{caseItem.metric}</div>
-              <p className="text-base leading-relaxed text-white/75 mb-6">{caseItem.desc}</p>
-              <div className="font-barlow-condensed text-lg font-bold text-yellow uppercase tracking-widest">{caseItem.brand}</div>
+        <div className="res-grid">
+          <div className="res-card">
+            <div className="res-top">
+              <div className="res-tag">Cirurgia Plástica  Goiânia</div>
+              <div className="res-icon"></div>
             </div>
-          ))}
+            <div className="res-val serif">3</div>
+            <div className="res-title">Consultas de rinoplastia em 60 dias</div>
+            <div className="res-txt">Cirurgião dependia de colegas para indicação. Novo site com autoridade + Google Ads segmentado gerou fila de espera para procedimentos acima de R$18.000. Investimento mensal: R$3.200. Retorno: R$54.000 em procedimentos novos.</div>
+          </div>
+          <div className="res-card">
+            <div className="res-top">
+              <div className="res-tag">Dermatologia Estética  Goiânia</div>
+              <div className="res-icon"></div>
+            </div>
+            <div className="res-val serif">68%</div>
+            <div className="res-title">Redução no custo por lead qualificado</div>
+            <div className="res-txt">Clínica gastava R$190 por lead que raramente convertia. Com funil reestruturado + automação de qualificação, custo caiu para R$61 e taxa de conversão dobrou em 45 dias.</div>
+          </div>
+          <div className="res-card">
+            <div className="res-top">
+              <div className="res-tag">Implantodontia  Centro-Oeste</div>
+              <div className="res-icon"></div>
+            </div>
+            <div className="res-val serif">+127%</div>
+            <div className="res-title">Crescimento em agendamentos em 90 dias</div>
+            <div className="res-txt">Clínica multi-unidade que nunca tinha apostado em digital. Site novo + SEO local + automação WhatsApp resultou em 127% mais agendamentos de implante e protocolo all-on-4  procedimentos acima de R$12.000.</div>
+          </div>
         </div>
       </div>
     </section>
-  );
-};
+  )
+}

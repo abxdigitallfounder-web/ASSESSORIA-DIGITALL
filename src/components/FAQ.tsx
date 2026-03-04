@@ -1,95 +1,61 @@
-import React, { useState } from 'react';
-import { useScrollReveal } from '../hooks/useScrollReveal';
+﻿import { useState } from "react";
 
-export const FAQ: React.FC = () => {
-  const [openIndex, setOpenIndex] = useState<number | null>(null);
-  const titleRef = useScrollReveal();
-  const visualRef = useScrollReveal();
+interface FaqItem {
+  q: string;
+  a: string;
+}
 
-  const scrollToSection = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
-    e.preventDefault();
-    const element = document.querySelector(href);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
+const items: FaqItem[] = [
+  {
+    q: "Vocês trabalham dentro das normas CFM e CFO?",
+    a: "Sim  100%. Conhecemos a Resolução CFM 2.336/2023 e as normas do CFO sobre publicidade odontológica. Nenhuma campanha, copy ou imagem é veiculada sem verificação de conformidade. Jamais usamos comparações, antes/após fora de contexto clínico ou promoções proibidas.",
+  },
+  {
+    q: "Como atrair pacientes de alto ticket e não apenas curiosos?",
+    a: "Através de segmentação por intenção de compra no Google, copy que filtra por perfil (não usa gatilhos de preço baixo) e automações que qualificam antes do primeiro contato. Paciente de alto ticket chega pesquisando o especialista, não o menor preço  e é exatamente esse perfil que buscamos.",
+  },
+  {
+    q: "Quanto tempo até ver resultado na agenda?",
+    a: "Google Ads: primeiros leads em 7 a 14 dias. Resultado consistente e previsível: 60 a 90 dias. SEO: posicionamento orgânico sólido em 90 a 120 dias. Quem prometer resultados da noite para o dia está mentindo  e os especialistas de saúde sabem disso melhor do que ninguém.",
+  },
+  {
+    q: "Qual investimento mínimo em mídia?",
+    a: "Recomendamos entre R$2.000 e R$5.000/mês em verba de mídia (Google Ads) para especialistas em Goiânia  dependendo da especialidade e procedimentos. No diagnóstico gratuito, analisamos sua situação e indicamos o investimento ideal para o seu objetivo de retorno.",
+  },
+  {
+    q: "Preciso ter experiência em marketing para trabalhar com vocês?",
+    a: "Não. Você cuida da medicina  nós cuidamos do digital. Nossa função é transformar estratégia em resultado mensurável e apresentar de forma simples: quantos leads chegaram, quantas consultas foram geradas, qual o custo por paciente novo. Sem jargão técnico desnecessário.",
+  },
+];
 
-  const faqs = [
-    {
-      q: 'O que é marketing em saúde?',
-      a: 'O marketing em saúde tem como objetivo aumentar a conscientização sobre condições médicas e tratamentos, construir confiança com os pacientes e guiá-los em sua jornada para encontrar cuidado. Por meio de campanhas eficientes de busca paga, estratégias sociais centradas no paciente e uma abordagem full-funnel de busca orgânica, o marketing em saúde pode aumentar o engajamento, construir confiança e fortalecer sua marca.'
-    },
-    {
-      q: 'Como aumentar o volume de pacientes?',
-      a: 'Uma estratégia digital de marketing full-funnel é uma forma eficaz de aumentar o volume de pacientes. Conecte-se com eles em cada etapa de sua jornada com anúncios sociais envolventes e campanhas de PPC direcionadas. Para fomentar o crescimento orgânico, combine essas estratégias com um site responsivo e escalável totalmente otimizado para busca.'
-    },
-    {
-      q: 'Quais são as principais estratégias de marketing em saúde?',
-      a: 'As principais estratégias de marketing em saúde giram em torno da excelência digital e do engajamento do paciente. Fornecer uma experiência digital de alta qualidade por meio do seu site é crucial para atrair novos pacientes à sua prática. Aproveitar o SEO local e executar uma campanha eficiente do Google Ads aumentará sua visibilidade na web.'
-    },
-    {
-      q: 'Por que médicos precisam de SEO e marketing digital?',
-      a: 'O mercado de saúde é altamente competitivo; portanto, ter uma forte presença online é essencial. À medida que os pacientes dependem mais de fontes online do que de referências tradicionais, o marketing digital é crucial para médicos atraírem e reterem novos consumidores.'
-    },
-    {
-      q: 'O que é uma jornada do paciente?',
-      a: 'A jornada do paciente é o caminho do "cliente" de saúde — cada etapa que um paciente percorre, desde a pesquisa de sintomas e busca por um provedor de saúde online até marcar uma consulta, receber tratamento e acompanhamento pós-cuidado.'
-    }
-  ];
+export function FAQ() {
+  const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   return (
-    <section className="bg-black px-5% py-20 md:py-28">
-      <div className="max-w-6xl mx-auto">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-start">
-          {/* FAQ List */}
-          <div>
-            <div ref={titleRef} className="reveal mb-12">
-              <div className="section-pretitle">Perguntas Frequentes</div>
-              <h2 className="section-title mb-0">Tire Suas <span>Dúvidas</span></h2>
+    <section className="faq-sec">
+      <div className="mw">
+        <div className="sec-head">
+          <p className="tag">Dúvidas frequentes</p>
+          <h2 className="sec-h serif">Respostas diretas,<br/><em>sem enrolação</em></h2>
+        </div>
+        <div className="faq-wrap">
+          {items.map((item, i) => (
+            <div
+              key={i}
+              className={`faq-item${openIndex === i ? " open" : ""}`}
+            >
+              <div
+                className="faq-q-row"
+                onClick={() => setOpenIndex(openIndex === i ? null : i)}
+              >
+                <span className="faq-qtxt serif">{item.q}</span>
+                <span className="faq-arr">+</span>
+              </div>
+              <div className="faq-ans">{item.a}</div>
             </div>
-
-            <div className="space-y-0 border-t border-gray-700">
-              {faqs.map((faq, index) => (
-                <div
-                  key={index}
-                  className="border-b border-gray-700 py-6 cursor-pointer"
-                  onClick={() => setOpenIndex(openIndex === index ? null : index)}
-                >
-                  <div className="flex justify-between items-center gap-4 hover:text-yellow transition-colors">
-                    <button className="font-barlow-condensed text-lg font-bold uppercase tracking-wide text-left text-white hover:text-yellow transition-colors">
-                      {faq.q}
-                    </button>
-                    <div className={`w-6 h-6 bg-yellow flex items-center justify-center text-black text-xs font-bold flex-shrink-0 transition-transform duration-300 ${openIndex === index ? 'rotate-180' : ''}`}>
-                      ▼
-                    </div>
-                  </div>
-                  {openIndex === index && (
-                    <div className="mt-4 text-sm leading-relaxed text-white/60">
-                      {faq.a}
-                    </div>
-                  )}
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Visual Card */}
-          <div ref={visualRef} className="reveal bg-gray-mid p-12 border-l-4 border-yellow sticky top-20">
-            <h3 className="font-bebas text-3xl text-yellow mb-4 tracking-wide">
-              RevRx™
-            </h3>
-            <p className="text-sm leading-relaxed text-white/60 mb-4">
-              Planejamento Estratégico que Parece Mágica, Funciona como Ciência. Pronto para passar do erro e acerto para o crescimento confiante?
-            </p>
-            <p className="text-sm leading-relaxed text-white/60 mb-8">
-              RevRx™ é sua ferramenta definitiva de business intelligence para crescer o número de pacientes enquanto reduz custos de aquisição. Combinamos Media Mix Modeling (MMM) com profunda expertise em saúde.
-            </p>
-            <a href="#contato" onClick={(e) => scrollToSection(e, '#contato')} className="btn-primary">
-              Veja Como Funciona
-            </a>
-          </div>
+          ))}
         </div>
       </div>
     </section>
   );
-};
+}

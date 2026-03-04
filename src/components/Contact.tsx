@@ -1,179 +1,54 @@
-import React, { useState } from 'react';
-import { useScrollReveal } from '../hooks/useScrollReveal';
-
-export const Contact: React.FC = () => {
-  const infoRef = useScrollReveal();
-  const formRef = useScrollReveal();
-  const [submitted, setSubmitted] = useState(false);
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    setSubmitted(true);
-    setTimeout(() => setSubmitted(false), 3000);
-  };
-
+﻿export function Contact() {
   return (
-    <section id="contato" className="bg-black px-5% py-20 md:py-28">
-      <div className="max-w-6xl mx-auto">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-16 md:gap-20 items-start">
-          {/* Contact Info */}
-          <div ref={infoRef} className="reveal">
-            <div className="section-pretitle">Vamos Começar</div>
-            <h2 className="section-title">
-              Preparado, <span>Vamos Crescer.</span>
-            </h2>
-            <p className="text-lg leading-relaxed text-white/70 mb-5">
-              Crescimento não precisa ser difícil. Deixe-nos ajudar você a escalar sua organização com serviços de marketing de performance que eliminam as suposições do crescimento.
-            </p>
-            <p className="text-lg leading-relaxed text-white/70 mb-10">
-              Começaremos com suas metas de negócios e orçamento, depois ajudaremos a encontrar a estratégia digital certa para gerar resultados reais.
-            </p>
+    <section className="cta-fin" id="contato">
+      <div className="mw" style={{position:"relative",zIndex:1,textAlign:"center"}}>
+        <p className="tag" style={{justifyContent:"center",display:"flex",marginBottom:"12px"}}>Próximo passo</p>
+        <h2 className="sec-h serif" style={{fontSize:"clamp(38px,5vw,66px)"}}>
+          Seu paciente ideal está<br/>pesquisando <em>agora no Google.</em><br/>Ele vai encontrar você?
+        </h2>
+        <p className="sec-desc center" style={{margin:"20px auto 0"}}>Faça um diagnóstico digital gratuito. Identificamos em 30 minutos onde sua agenda está perdendo pacientes de alto valor todo mês.</p>
 
-            <div className="space-y-4">
-              {[
-                'Estratégia personalizada para seu mercado e objetivos',
-                'Expertise profunda em saúde e marketing digital',
-                'Conformidade LGPD e segurança de dados garantida',
-                'Resultados mensuráveis e relatórios transparentes'
-              ].map((item, index) => (
-                <div key={index} className="flex items-center gap-4 text-sm text-white/70">
-                  <div className="w-10 h-10 bg-yellow text-black flex items-center justify-center flex-shrink-0 font-bold">
-                    ✓
-                  </div>
-                  <span>{item}</span>
-                </div>
-              ))}
-            </div>
+        <a
+          href="https://wa.me/5562999999999?text=Quero%20um%20diagn%C3%B3stico%20gratuito%20para%20minha%20cl%C3%ADnica"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="wpp-btn"
+          style={{margin:"40px auto 8px",display:"inline-flex"}}
+        >
+          <span className="wpp-icon">💬</span>
+          Agendar diagnóstico gratuito pelo WhatsApp
+        </a>
+
+        <p className="form-note" style={{marginTop:"12px"}}>Ou preencha e entramos em contato em até 2 horas</p>
+
+        <form className="cta-form" onSubmit={(e) => e.preventDefault()}>
+          <div className="form-row">
+            <input className="fi" type="text" placeholder="Nome completo" required />
+            <input className="fi" type="tel" placeholder="WhatsApp" required />
           </div>
-
-          {/* Contact Form */}
-          <div ref={formRef} className="reveal">
-            <form className="bg-gray-mid p-12 border-t-4 border-yellow" onSubmit={handleSubmit}>
-            <div className="grid grid-cols-2 gap-4 mb-5">
-              <div>
-                <label className="block text-xs font-bold tracking-widest uppercase text-white/50 mb-2">
-                  Nome*
-                </label>
-                <input
-                  type="text"
-                  placeholder="Seu nome"
-                  required
-                  className="w-full bg-gray-900 border border-gray-600 text-white px-4 py-3 focus:border-yellow focus:outline-none transition-colors text-sm"
-                />
-              </div>
-              <div>
-                <label className="block text-xs font-bold tracking-widest uppercase text-white/50 mb-2">
-                  Sobrenome*
-                </label>
-                <input
-                  type="text"
-                  placeholder="Seu sobrenome"
-                  required
-                  className="w-full bg-gray-900 border border-gray-600 text-white px-4 py-3 focus:border-yellow focus:outline-none transition-colors text-sm"
-                />
-              </div>
-            </div>
-
-            <div className="grid grid-cols-2 gap-4 mb-5">
-              <div>
-                <label className="block text-xs font-bold tracking-widest uppercase text-white/50 mb-2">
-                  E-mail Corporativo*
-                </label>
-                <input
-                  type="email"
-                  placeholder="seu@empresa.com.br"
-                  required
-                  className="w-full bg-gray-900 border border-gray-600 text-white px-4 py-3 focus:border-yellow focus:outline-none transition-colors text-sm"
-                />
-              </div>
-              <div>
-                <label className="block text-xs font-bold tracking-widest uppercase text-white/50 mb-2">
-                  Telefone*
-                </label>
-                <input
-                  type="tel"
-                  placeholder="(00) 00000-0000"
-                  required
-                  className="w-full bg-gray-900 border border-gray-600 text-white px-4 py-3 focus:border-yellow focus:outline-none transition-colors text-sm"
-                />
-              </div>
-            </div>
-
-            <div className="grid grid-cols-2 gap-4 mb-5">
-              <div>
-                <label className="block text-xs font-bold tracking-widest uppercase text-white/50 mb-2">
-                  Empresa*
-                </label>
-                <input
-                  type="text"
-                  placeholder="Nome da empresa"
-                  required
-                  className="w-full bg-gray-900 border border-gray-600 text-white px-4 py-3 focus:border-yellow focus:outline-none transition-colors text-sm"
-                />
-              </div>
-              <div>
-                <label className="block text-xs font-bold tracking-widest uppercase text-white/50 mb-2">
-                  Site*
-                </label>
-                <input
-                  type="text"
-                  placeholder="www.suaempresa.com.br"
-                  required
-                  className="w-full bg-gray-900 border border-gray-600 text-white px-4 py-3 focus:border-yellow focus:outline-none transition-colors text-sm"
-                />
-              </div>
-            </div>
-
-            <div className="mb-5">
-              <label className="block text-xs font-bold tracking-widest uppercase text-white/50 mb-2">
-                Orçamento Mensal de Marketing Digital*
-              </label>
-              <select required className="w-full bg-gray-900 border border-gray-600 text-white px-4 py-3 focus:border-yellow focus:outline-none transition-colors text-sm">
-                <option value="">Selecione o orçamento</option>
-                <option>R$ 10.000 – R$ 50.000</option>
-                <option>R$ 50.001 – R$ 150.000</option>
-                <option>R$ 150.001 – R$ 500.000</option>
-                <option>R$ 500.001 – R$ 1.000.000</option>
-                <option>R$ 1.000.000+</option>
-              </select>
-            </div>
-
-            <div className="mb-5">
-              <label className="block text-xs font-bold tracking-widest uppercase text-white/50 mb-2">
-                Como podemos ajudar?*
-              </label>
-              <textarea
-                placeholder="Descreva seus objetivos e desafios..."
-                required
-                className="w-full bg-gray-900 border border-gray-600 text-white px-4 py-3 focus:border-yellow focus:outline-none transition-colors text-sm h-32 resize-none"
-              ></textarea>
-            </div>
-
-            <div className="mb-6">
-              <label className="block text-xs font-bold tracking-widest uppercase text-white/50 mb-2">
-                Como nos encontrou?
-              </label>
-              <input
-                type="text"
-                placeholder="Google, indicação, etc."
-                className="w-full bg-gray-900 border border-gray-600 text-white px-4 py-3 focus:border-yellow focus:outline-none transition-colors text-sm"
-              />
-            </div>
-
-            <button
-              type="submit"
-              className={`w-full py-4 font-bold text-base uppercase tracking-widest transition-all duration-200 ${
-                submitted
-                  ? 'bg-green-600 text-white'
-                  : 'bg-yellow text-black hover:bg-yellow/90 hover:translate-y-[-2px] hover:shadow-lg hover:shadow-yellow/30'
-              }`}
-            >
-              {submitted ? 'Mensagem Enviada! ✓' : 'Enviar Mensagem'}
-            </button>
-            </form>
-          </div>
-        </div>
+          <select className="fi">
+            <option value="">Sua especialidade...</option>
+            <option>Cirurgia Plástica</option>
+            <option>Dermatologia Estética</option>
+            <option>Implantodontia</option>
+            <option>Odontologia Estética / Lentes</option>
+            <option>Ortopedia</option>
+            <option>Medicina Estética</option>
+            <option>Outra especialidade</option>
+          </select>
+          <select className="fi">
+            <option value="">Maior desafio hoje...</option>
+            <option>Dependência de indicação</option>
+            <option>Leads desqualificados / sem poder aquisitivo</option>
+            <option>Site que não gera pacientes</option>
+            <option>Não apareço no Google</option>
+            <option>Perco leads fora do horário</option>
+            <option>Quero escalar mas não sei como</option>
+          </select>
+          <button type="submit" className="fi-submit">Quero meu diagnóstico gratuito </button>
+          <p className="form-note">Sem compromisso  100% gratuito  Resposta em até 2 horas  Conformidade CFM/CFO garantida</p>
+        </form>
       </div>
     </section>
-  );
-};
+  )
+}
